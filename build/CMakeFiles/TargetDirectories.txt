@@ -1,0 +1,3 @@
+/home/k32ar/Projects/KE/build/CMakeFiles/KE.dir
+/home/k32ar/Projects/KE/build/CMakeFiles/edit_cache.dir
+/home/k32ar/Projects/KE/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/k32ar/Projects/KE/build",
+  "command": "/usr/bin/gcc -g -std=gnu99 -Wall -Wextra -pedantic -Wno-unused-variable -Wno-unused-parameter -Wno-unused-function -o CMakeFiles/KE.dir/src/main.c.o -c /home/k32ar/Projects/KE/src/main.c",
+  "file": "/home/k32ar/Projects/KE/src/main.c",
+  "output": "CMakeFiles/KE.dir/src/main.c.o"
+}
+]
