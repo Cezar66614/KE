@@ -34,6 +34,8 @@ void ke_pop_elem_no(void);
 
 /* Function that prints an error message to the output and handles all scopes until and including the first scope added that is marked as a function scope (gets f*ed by returns) */
 void ke_error(const char *message);
+/* Function that prints an error message to the output and handles all scopes */
+void ke_error_kill(const char *message);
 
 #ifdef KE_IMPL
 #undef KE_IMPL
@@ -216,6 +218,12 @@ void ke_error(const char *message) {
   while (ke_stack.scopes_count && !(ke_stack.scopes[ke_stack.scopes_count - 1].function_scope)) ke_pop_scope();
   if (ke_stack.scopes_count && ke_stack.scopes[ke_stack.scopes_count - 1].function_scope) ke_pop_scope();
 }
+void ke_error_kill(const char *message) {
+  fprintf(KE_OUT, "ERROR in %s at %d: %s. This might help: %s\n", __FILE__, __LINE__, message, strerror(errno));
+
+  while (ke_stack.scopes_count) ke_pop_scope();
+}
+
 
 #endif // KE_IMPL
 
