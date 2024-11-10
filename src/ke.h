@@ -11,6 +11,9 @@
 #define KE_OUT stderr
 #endif // KE_OUT
 
+#define KE_ERROR(message) (ke_error((message), __FILE__, __LINE__))
+#define KE_ERROR_KILL(message) (ke_error_kill((message), __FILE__, __LINE__))
+
 /* Function that does the set up of the KE error-handling library */
 void ke_init(void);
 /* Function that does the clean up of the KE error-handling library */
@@ -33,9 +36,9 @@ void ke_pop_elem(void);
 void ke_pop_elem_no(void);
 
 /* Function that prints an error message to the output and handles all scopes until and including the first scope added that is marked as a function scope (gets f*ed by returns) */
-void ke_error(const char *message);
+void ke_error(const char *message, const char *file, int line);
 /* Function that prints an error message to the output and handles all scopes */
-void ke_error_kill(const char *message);
+void ke_error_kill(const char *message, const char *file, int line);
 
 #ifdef KE_IMPL
 #undef KE_IMPL
@@ -212,14 +215,14 @@ void ke_pop_elem_no(void) {
   if (ke_stack.scopes[ke_stack.scopes_count - 1].elems_count) --(ke_stack.scopes[ke_stack.scopes_count - 1].elems_count);
 }
 
-void ke_error(const char *message) {
-  fprintf(KE_OUT, "ERROR in %s at %d: %s. This might help: %s\n", __FILE__, __LINE__, message, strerror(errno));
+void ke_error(const char *message, const char *file, int line) {
+  fprintf(KE_OUT, "ERROR in %s at %d: %s. This might help: %s\n", file, line, message, strerror(errno));
 
   while (ke_stack.scopes_count && !(ke_stack.scopes[ke_stack.scopes_count - 1].function_scope)) ke_pop_scope();
   if (ke_stack.scopes_count && ke_stack.scopes[ke_stack.scopes_count - 1].function_scope) ke_pop_scope();
 }
-void ke_error_kill(const char *message) {
-  fprintf(KE_OUT, "ERROR in %s at %d: %s. This might help: %s\n", __FILE__, __LINE__, message, strerror(errno));
+void ke_error_kill(const char *message, const char *file, int line) {
+  fprintf(KE_OUT, "ERROR in %s at %d: %s. This might help: %s\n", file, line, message, strerror(errno));
 
   while (ke_stack.scopes_count) ke_pop_scope();
 }

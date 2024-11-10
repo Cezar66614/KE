@@ -29,6 +29,6 @@ function:\
 ke_push_elem(NULL, function);
 
 If you want to trigger an error before returning from a function:\
-ke_error("Error message");\
+KE_ERROR("Error message");\
 or if you want to be able to exit() the program:\
-ke_error_kill("Error message");
+KE_ERROR_KILL("Error message");

@@ -30,7 +30,7 @@ int main(void) {
     {
       ke_push_scope(false);
 
-      ke_error("Test");
+      KE_ERROR("Test");
 
       //ke_pop_scope();
     }
