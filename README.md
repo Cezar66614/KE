@@ -31,6 +31,6 @@ both:\
 ke_push_elem(pointer, function);
 
 If you want to trigger an error before returning from a function:\
-KE_ERROR("Error message");\
+KE_ERROR("Error message"); || KE_ERROR_KILL("Error message");\
 or if you want to be able to exit() the program:\
 KE_ERROR_KILL("Error message");
