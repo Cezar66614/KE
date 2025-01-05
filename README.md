@@ -26,7 +26,9 @@ After that you can register a new element in that context:\
 pointer:\
 ke_push_elem(pointer, NULL);\
 function:\
-ke_push_elem(NULL, function);
+ke_push_elem(NULL, function);\
+both:\
+ke_push_elem(pointer, function);
 
 If you want to trigger an error before returning from a function:\
 KE_ERROR("Error message");\
